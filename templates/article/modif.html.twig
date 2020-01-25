@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% form_theme formModif 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+{{ form_start(formModif) }}
+
+{{ form_row(formModif.title, {'attr': {'placeholder': "Renseigner le titre"}}) }}
+{{ form_row(formModif.content, {'attr': {'placeholder': "Renseigner contenu"}}) }}
+{{ form_row(formModif.image, {'attr': {'placeholder': "Renseigner l'URL de l'image'"}}) }}
+
+<button type="submit" class="btn btn-success">Modifier</button>
+
+
+{{ form_end(formModif) }}
+
+
+{% endblock %}

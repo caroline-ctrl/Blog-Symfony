@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% form_theme formCreate 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+{{ form_start(formCreate) }}
+
+{{ form_row(formCreate.title, {'attr': {'placeholder': "Renseigner le titre"}}) }}
+{{ form_row(formCreate.content, {'attr': {'placeholder': "Renseigner contenu"}}) }}
+{{ form_row(formCreate.image, {'attr': {'placeholder': "Renseigner l'URL de l'image'"}}) }}
+
+<button type="submit" class="btn btn-success">Créer</button>
+
+{{ form_end(formCreate) }}
+
+
+{% endblock %}
