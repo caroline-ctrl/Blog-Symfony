@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,6 +42,11 @@ class ArticleController extends AbstractController
             ->add('title')
             ->add('content')
             ->add('image')
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'title'
+            ])
+
             ->getForm();
 
         $formCreate->handleRequest($request);
@@ -69,6 +76,10 @@ class ArticleController extends AbstractController
             ->add('title')
             ->add('content')
             ->add('image')
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'title'
+            ])
             ->getForm();
 
         $formModif->handleRequest($request);

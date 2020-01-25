@@ -4,7 +4,7 @@
 
 <article class="jumbotron text-white bg-primary mt-3 text-center">
   <h2 class="display-3">{{ article.title }}</h2>
-  <h6 class="lead">le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }} dans la categories
+  <h6 class="lead">le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }} dans la categorie
     {{ article.category.title }}</h6>
   <hr class="my-4">
   <img class="card-title" src="{{ article.image }}" alt="">
@@ -12,6 +12,8 @@
   <p class="lead">
     <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}" role="button">Modifier</a>
     <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}" role="button">Supprimer</a>
+    <a class="btn btn-light" href="" role="button">Commenter</a>
+
   </p>
 </article>
 
