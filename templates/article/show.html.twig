@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<article class="row">
-    <article class="col-4 card text-white bg-primary m-3" style="max-width: 20rem;">
-        <h2 class="card-header">{{ article.title }}</h2>
-        <h6>le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }}</h6>
-        <div class="card-body">
-            <img class="card-title" src="{{ article.image }}" alt="">
-            <p class="card-text">{{ article.content }}</p>
-            <hr>
-            <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}">Modifier</a>
-            <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}">Supprimer</a>
-        </div>
-    </article>
+
+<article class="jumbotron text-white bg-primary mt-3 text-center">
+    <h2 class="display-3">{{ article.title }}</h2>
+    <h6 class="lead">le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }}</h6>
+    <hr class="my-4">
+    <img class="card-title" src="{{ article.image }}" alt="">
+    <p>{{ article.content }}</p>
+    <p class="lead">
+      <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}" role="button">Modifier</a>
+      <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}" role="button">Supprimer</a>
+    </p>
 </article>
 
 {% endblock %}

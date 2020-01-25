@@ -1,3 +1,8 @@
-img{
+body {
+    background-color: #cccccc !important;
+    background-image: url("https://www.transparenttextures.com/patterns/arches.png") !important;
+}
+
+img {
     width: 250px;
 }
