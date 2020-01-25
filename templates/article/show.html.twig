@@ -3,15 +3,31 @@
 {% block body %}
 
 <article class="jumbotron text-white bg-primary mt-3 text-center">
-    <h2 class="display-3">{{ article.title }}</h2>
-    <h6 class="lead">le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }}</h6>
-    <hr class="my-4">
-    <img class="card-title" src="{{ article.image }}" alt="">
-    <p>{{ article.content }}</p>
-    <p class="lead">
-      <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}" role="button">Modifier</a>
-      <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}" role="button">Supprimer</a>
-    </p>
+  <h2 class="display-3">{{ article.title }}</h2>
+  <h6 class="lead">le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }} dans la categories
+    {{ article.category.title }}</h6>
+  <hr class="my-4">
+  <img class="card-title" src="{{ article.image }}" alt="">
+  <p>{{ article.content }}</p>
+  <p class="lead">
+    <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}" role="button">Modifier</a>
+    <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}" role="button">Supprimer</a>
+  </p>
 </article>
+
+<section id="commentaires">
+  {% for comment in article.comments %}
+  <div class="comment">
+    <div class="row">
+      <div class="col-3">
+        {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/y à H:i') }}</small>)
+      </div>
+      <div class="col">
+        {{ comment.content | raw }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</section>
 
 {% endblock %}

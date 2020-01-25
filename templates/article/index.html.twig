@@ -5,7 +5,7 @@
     {% for article in articles %}
     <article class="col-4 card text-white bg-primary m-3" style="max-width: 20rem;">
         <h2 class="card-header">{{ article.title }} </h2>
-        <h6>le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }}</h6>
+        <h6>le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }} dans la categories {{ article.category.title }}</h6>
         <div class="card-body">
             <img class="card-title" src="{{ article.image }}" alt="">
             <p class="card-text">{{ article.content }}</p>
