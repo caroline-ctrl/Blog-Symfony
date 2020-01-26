@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Comment;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -51,7 +53,6 @@ class ArticleController extends AbstractController
 
         $formCreate->handleRequest($request);
 
-        dump($news);
         if ($formCreate->isSubmitted() && $formCreate->isValid()) {
             $news->setCreatedAt(new \DateTime());
             $manager->persist($news);
@@ -63,6 +64,53 @@ class ArticleController extends AbstractController
             'formCreate' => $formCreate->createView()
         ]);
     }
+
+
+        /**
+     * @Route("/article/{id}", name="show")
+     */
+    public function show($id)
+    {
+        $repo = $this->getDoctrine()->getRepository(Article::class);
+        $article = $repo->find($id);
+
+        return $this->render('article/show.html.twig', [
+            'article' => $article
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/article/{id}/comment/", name="comment")
+     */
+    public function comment(Article $articleId, Request $request, EntityManagerInterface $manager)
+    {
+        $articleRepo = $this->getDoctrine()->getRepository(Article::class);
+        $contenuArticle = $articleRepo->find($articleId);
+
+        $com = new Comment();
+        $formCom = $this->createFormBuilder($com)
+            ->add('author')
+            ->add('content')
+
+            ->getForm();
+
+        $formCom->handleRequest($request);
+
+        if ($formCom->isSubmitted() && $formCom->isValid()) {
+            $com->setCreatedAt(new \DateTime());
+            $com->setArticle($contenuArticle);
+            $manager->persist($com);
+            $manager->flush();
+            return $this->redirectToRoute('show', ["id" => $contenuArticle->getId()]);
+        }
+
+        return $this->render('article/comment.html.twig', [
+            'formCom' => $formCom->createView()
+        ]);
+    }
+
 
 
 
@@ -104,7 +152,6 @@ class ArticleController extends AbstractController
         $manager->remove($article);
         $manager->flush();
         return $this->redirectToRoute('index');
-    
     }
 
 
@@ -112,16 +159,5 @@ class ArticleController extends AbstractController
 
 
 
-    /**
-     * @Route("/article/{id}", name="show")
-     */
-    public function show($id)
-    {
-        $repo = $this->getDoctrine()->getRepository(Article::class);
-        $article = $repo->find($id);
 
-        return $this->render('article/show.html.twig', [
-            'article' => $article
-        ]);
-    }
 }

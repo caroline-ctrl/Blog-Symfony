@@ -12,7 +12,7 @@
   <p class="lead">
     <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}" role="button">Modifier</a>
     <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}" role="button">Supprimer</a>
-    <a class="btn btn-light" href="" role="button">Commenter</a>
+    <a class="btn btn-light" href="{{ path('comment', {'id': article.id} )}}" role="button">Commenter</a>
 
   </p>
 </article>

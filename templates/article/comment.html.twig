@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% form_theme formCom 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+{{ form_start(formCom) }}
+
+{{ form_row(formCom.author, {'attr': {'placeholder': "Votre pseudo"}}) }}
+{{ form_row(formCom.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
+
+<button type="submit" class="btn btn-success">Ajouter</button>
+
+
+{{ form_end(formCom) }}
+
+
+{% endblock %}
