@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<article class="jumbotron text-white bg-primary mt-3 text-center">
+<article class="jumbotron card border-primary m-3 text-center">
   <h2 class="display-3">{{ article.title }}</h2>
   <h6 class="lead">le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }} dans la categorie
     {{ article.category.title }}</h6>
@@ -12,7 +12,7 @@
   <p class="lead">
     <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}" role="button">Modifier</a>
     <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}" role="button">Supprimer</a>
-    <a class="btn btn-light" href="{{ path('comment', {'id': article.id} )}}" role="button">Commenter</a>
+    <a class="btn btn-secondary" href="{{ path('comment', {'id': article.id} )}}" role="button">Commenter</a>
 
   </p>
 </article>

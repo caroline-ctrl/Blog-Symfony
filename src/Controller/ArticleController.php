@@ -18,12 +18,11 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/index", name="index")
+     * @Route("/", name="index")
      */
     public function index()
     {
-        $repo = $this->getDoctrine()->getRepository(Article::class);
-        $articles = $repo->findAll();
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
 
         return $this->render('article/index.html.twig', [
             'controller_name' => 'ArticleController',
@@ -66,13 +65,92 @@ class ArticleController extends AbstractController
     }
 
 
-        /**
+    /**
+     * @Route("/category", name="category")
+
+     */
+    public function category()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        return $this->render('article/category.html.twig', compact('categories'));
+    }
+
+
+
+    /**
+     * @Route("/categoryGenre/{id}", name="categoryGenre")
+
+     */
+    public function categoryGenre($id)
+    {
+        $genres = $this->getDoctrine()->getRepository(Category::class)->find($id);
+
+        return $this->render('article/categoryGenre.html.twig', compact('genres'));
+    }
+
+
+
+
+
+    /**
+     * @Route("/fantastique", name="fantastique")
+
+     */
+    public function cat1()
+    {
+        $arts = $this->getDoctrine()->getRepository(Article::class)->findAll();
+
+        return $this->render('article/fantastique.html.twig', compact('arts'));
+    }
+
+
+
+
+    /**
+     * @Route("/scienceFiction", name="category/scienceFiction")
+
+     */
+    public function cat2()
+    {
+
+        $cats = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+
+        return $this->render('article/scienceFiction.html.twig', [
+            'cats' => $cats
+        ]);
+    }
+
+
+
+
+    /**
+     * @Route("/policier", name="category/policier")
+
+     */
+    public function cat3()
+    {
+
+        $cats = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+
+        return $this->render('article/policier.html.twig', [
+            'cats' => $cats
+        ]);
+    }
+
+
+
+
+
+
+    /**
      * @Route("/article/{id}", name="show")
      */
     public function show($id)
     {
-        $repo = $this->getDoctrine()->getRepository(Article::class);
-        $article = $repo->find($id);
+        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
 
         return $this->render('article/show.html.twig', [
             'article' => $article
@@ -153,11 +231,4 @@ class ArticleController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('index');
     }
-
-
-
-
-
-
-
 }

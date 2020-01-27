@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<h1>{{ genres.title }}</h1>
 <article class="row">
-    {% for article in articles %}
-    <article class="col-4 card card border-primary m-3" style="max-width: 20rem;">
+
+    {% for article in genres.articles %}
+
+    <article class="col-4 card border-primary m-3" style="max-width: 20rem;">
         <h3 class="card-header">{{ article.title }}</h3>
-        <h6>{{ article.category.title }}</h6>
         <h6>le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }}</h6>
         <div class="d-flex flex-column align-items-left card-body">
             <img class="card-title" src="{{ article.image }}" alt="">
@@ -15,7 +17,13 @@
             </div>
         </div>
     </article>
+    <hr><br>
+
+
     {% endfor %}
+
 </article>
+
+
 
 {% endblock %}

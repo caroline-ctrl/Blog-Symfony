@@ -2,6 +2,8 @@
 {% form_theme formModif 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
+<div class="bg-light m-5 p-5 rounded">
+
 {{ form_start(formModif) }}
 
 {{ form_row(formModif.title, {'attr': {'placeholder': "Renseigner le titre"}}) }}
@@ -13,6 +15,7 @@
 
 
 {{ form_end(formModif) }}
+</div>
 
 
 {% endblock %}
