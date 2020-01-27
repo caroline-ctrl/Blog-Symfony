@@ -3,7 +3,7 @@
 {% block body %}
 <article class="row">
     {% for article in articles %}
-    <article class="col-4 card card border-primary m-3" style="max-width: 20rem;">
+    <article class="col-4 col-sm-12 card card border-primary m-3" style="max-width: 20rem;">
         <h3 class="card-header">{{ article.title }}</h3>
         <h6>{{ article.category.title }}</h6>
         <h6>le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i') }}</h6>

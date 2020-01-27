@@ -2,6 +2,8 @@
 {% form_theme formCom 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
+
+<div class="bg-light m-5 p-5 rounded">
 {{ form_start(formCom) }}
 
 {{ form_row(formCom.author, {'attr': {'placeholder': "Votre pseudo"}}) }}
@@ -11,6 +13,6 @@
 
 
 {{ form_end(formCom) }}
-
+</div>
 
 {% endblock %}

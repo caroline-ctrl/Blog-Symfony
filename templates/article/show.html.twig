@@ -18,18 +18,20 @@
 </article>
 
 <section id="commentaires">
-  {% for comment in article.comments %}
-  <div class="comment">
-    <div class="row">
-      <div class="col-3">
-        {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/y à H:i') }}</small>)
-      </div>
-      <div class="col">
-        {{ comment.content | raw }}
+  <div class="bg-light m-5 p-5 rounded">
+    {% for comment in article.comments %}
+    <div class="comment">
+      <div class="row">
+        <div class="col-3">
+          {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/y à H:i') }}</small>)
+        </div>
+        <div class="col">
+          {{ comment.content | raw }}
+        </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </section>
 
 {% endblock %}

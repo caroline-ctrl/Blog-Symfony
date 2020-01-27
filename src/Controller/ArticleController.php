@@ -93,57 +93,6 @@ class ArticleController extends AbstractController
 
 
 
-    /**
-     * @Route("/fantastique", name="fantastique")
-
-     */
-    public function cat1()
-    {
-        $arts = $this->getDoctrine()->getRepository(Article::class)->findAll();
-
-        return $this->render('article/fantastique.html.twig', compact('arts'));
-    }
-
-
-
-
-    /**
-     * @Route("/scienceFiction", name="category/scienceFiction")
-
-     */
-    public function cat2()
-    {
-
-        $cats = $this->getDoctrine()->getRepository(Category::class)->findAll();
-
-
-        return $this->render('article/scienceFiction.html.twig', [
-            'cats' => $cats
-        ]);
-    }
-
-
-
-
-    /**
-     * @Route("/policier", name="category/policier")
-
-     */
-    public function cat3()
-    {
-
-        $cats = $this->getDoctrine()->getRepository(Category::class)->findAll();
-
-
-        return $this->render('article/policier.html.twig', [
-            'cats' => $cats
-        ]);
-    }
-
-
-
-
-
 
     /**
      * @Route("/article/{id}", name="show")
