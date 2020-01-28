@@ -12,7 +12,9 @@
   <p class="lead">
     <a class="btn btn-success" href="{{ path('modif', {'id': article.id} )}}" role="button">Modifier</a>
     <a class="btn btn-danger" href="{{ path('supp', {'id': article.id} )}}" role="button">Supprimer</a>
+    {% if  app.user %}
     <a class="btn btn-secondary" href="{{ path('comment', {'id': article.id} )}}" role="button">Commenter</a>
+    {% endif %}
 
   </p>
 </article>

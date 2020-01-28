@@ -4,6 +4,9 @@
 {% block body %}
 
 <div class="bg-light m-5 p-5 rounded">
+
+    {% if app.user %}
+        
 {{ form_start(formCom) }}
 
 {{ form_row(formCom.author, {'attr': {'placeholder': "Votre pseudo"}}) }}
@@ -13,6 +16,12 @@
 
 
 {{ form_end(formCom) }}
+
+{% else %}
+    <h3>Vous ne pouvez pas commenter si vous n'êtes pas commenter</h3>
+    <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>
+{% endif %}
+
 </div>
 
 {% endblock %}
